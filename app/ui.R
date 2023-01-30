@@ -4,11 +4,9 @@
 library(shiny)
 
 # Load filter choice lists
-props = c('Points', 'Rebounds', 'Assists', 'PTS+REBS', 'PTS+ASTS', 
-          'PTS+REBS+ASTS', 'REBS+ASTS', 'Blocks', 'Steals', '3-PT Made')
-opponents = c('ATL', 'BOS', 'BRK', 'CHO', 'CHI', 'CLE', 'DAL', 'DEN', 'DET', 'GSW', 'HOU', 
-              'IND', 'LAC', 'LAL', 'MEM', 'MIA', 'MIL', 'MIN', 'NOP', 'NYK', 'OKC', 'ORL', 
-              'PHI', 'PHO', 'POR', 'SAC', 'SAS', 'TOR', 'UTA', 'WAS')
+props = c('Points', 'Rebounds', 'Assists', 'PTS+REB', 'PTS+AST', 'PTS+REB+AST', 'REB+AST', 'Blocks', 
+          'Steals', '3-PT Made')
+opponents = team_opponent_totals$Tm
 players = player_totals$Player
 
 # ui
@@ -32,8 +30,8 @@ shinyUI(fluidPage(
         ),
         
         column(3,
-               textInput("line",
-                         label = "Line:",
+               textInput("val",
+                         label = "Value:",
                          placeholder = "Enter a numeric value")
         ),
         
@@ -54,7 +52,7 @@ shinyUI(fluidPage(
     
     fluidRow(
       column(6,
-             plotOutput("pointPropPlot")
+             plotOutput("propPlot")
              ),
       column(6, 
              tableOutput("opponentTable")
