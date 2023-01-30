@@ -16,6 +16,14 @@ scrape_player_game_log <- function(player_id, year) {
     filter(Rk != 'Rk') %>%
     select(-Rk)
   
+  # Make stats numeric
+  df$PTS <- as.numeric(df$PTS)
+  df$PTS <- as.numeric(df$AST)
+  df$PTS <- as.numeric(df$TRB)
+  df$PTS <- as.numeric(df$STL)
+  df$PTS <- as.numeric(df$BLK)
+  df$PTS <- as.numeric(df$X3P)
+  
   # Return table
   return(df)
 }
